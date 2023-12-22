@@ -37,7 +37,7 @@ function appReducer(state, action) {
 }
 
 function AppProvider({children}) {
-  const [state, dispatch] = React.useReducer(appReducer, {
+  const [ state, dispatch ] = React.useReducer(appReducer, {
     // 💣 remove the dogName state because we're no longer managing that
     dogName: '',
     grid: initialGrid,
@@ -69,8 +69,8 @@ function useAppDispatch() {
 
 function Grid() {
   const dispatch = useAppDispatch()
-  const [rows, setRows] = useDebouncedState(50)
-  const [columns, setColumns] = useDebouncedState(50)
+  const [ rows, setRows ] = useDebouncedState(50)
+  const [ columns, setColumns ] = useDebouncedState(50)
   const updateGridData = () => dispatch({type: 'UPDATE_GRID'})
   return (
     <AppGrid
@@ -83,6 +83,7 @@ function Grid() {
     />
   )
 }
+
 Grid = React.memo(Grid)
 
 function Cell({row, column}) {
@@ -103,6 +104,7 @@ function Cell({row, column}) {
     </button>
   )
 }
+
 Cell = React.memo(Cell)
 
 function DogNameInput() {
@@ -135,6 +137,7 @@ function DogNameInput() {
     </form>
   )
 }
+
 function App() {
   const forceRerender = useForceRerender()
   return (

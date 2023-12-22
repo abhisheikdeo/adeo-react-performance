@@ -34,11 +34,11 @@ function appReducer(state, action) {
 }
 
 function AppProvider({children}) {
-  const [state, dispatch] = React.useReducer(appReducer, {
+  const [ state, dispatch ] = React.useReducer(appReducer, {
     dogName: '',
     grid: initialGrid,
   })
-  const value = React.useMemo(() => [state, dispatch], [state])
+  const value = React.useMemo(() => [ state, dispatch ], [ state ])
   return (
     <AppStateContext.Provider value={value}>
       {children}
@@ -55,9 +55,9 @@ function useAppState() {
 }
 
 function Grid() {
-  const [, dispatch] = useAppState()
-  const [rows, setRows] = useDebouncedState(50)
-  const [columns, setColumns] = useDebouncedState(50)
+  const [ , dispatch ] = useAppState()
+  const [ rows, setRows ] = useDebouncedState(50)
+  const [ columns, setColumns ] = useDebouncedState(50)
   const updateGridData = () => dispatch({type: 'UPDATE_GRID'})
   return (
     <AppGrid
@@ -70,10 +70,11 @@ function Grid() {
     />
   )
 }
+
 Grid = React.memo(Grid)
 
 function Cell({row, column}) {
-  const [state, dispatch] = useAppState()
+  const [ state, dispatch ] = useAppState()
   const cell = state.grid[row][column]
   const handleClick = () => dispatch({type: 'UPDATE_GRID_CELL', row, column})
   return (
@@ -89,10 +90,11 @@ function Cell({row, column}) {
     </button>
   )
 }
+
 Cell = React.memo(Cell)
 
 function DogNameInput() {
-  const [state, dispatch] = useAppState()
+  const [ state, dispatch ] = useAppState()
   const {dogName} = state
 
   function handleChange(event) {

@@ -17,18 +17,18 @@ const Prefetched = React.lazy(() =>
     /* webpackPrefetch: true */
     /* webpackChunkName: "prefetched" */
     './prefetched'
-  ),
+    ),
 )
 const Preloaded = React.lazy(() =>
   import(
     /* webpackPreload: true */
     /* webpackChunkName: "preload" */
     './preloaded'
-  ),
+    ),
 )
 
 function Main() {
-  const [show, setShow] = React.useState(false)
+  const [ show, setShow ] = React.useState(false)
   return (
     <React.Suspense fallback="...">
       <button onClick={() => setShow(true)}>Show</button>

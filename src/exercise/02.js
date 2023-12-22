@@ -7,12 +7,12 @@ import {getItems} from '../filter-cities'
 import {useForceRerender} from '../utils'
 
 function Menu({
-  items,
-  getMenuProps,
-  getItemProps,
-  highlightedIndex,
-  selectedItem,
-}) {
+                items,
+                getMenuProps,
+                getItemProps,
+                highlightedIndex,
+                selectedItem,
+              }) {
   return (
     <ul {...getMenuProps()}>
       {items.map((item, index) => (
@@ -32,13 +32,13 @@ function Menu({
 }
 
 function ListItem({
-  getItemProps,
-  item,
-  index,
-  selectedItem,
-  highlightedIndex,
-  ...props
-}) {
+                    getItemProps,
+                    item,
+                    index,
+                    selectedItem,
+                    highlightedIndex,
+                    ...props
+                  }) {
   const isSelected = selectedItem?.id === item.id
   const isHighlighted = highlightedIndex === index
   return (
@@ -58,7 +58,7 @@ function ListItem({
 
 function App() {
   const forceRerender = useForceRerender()
-  const [inputValue, setInputValue] = React.useState('')
+  const [ inputValue, setInputValue ] = React.useState('')
 
   // 🐨 wrap getItems in a call to `React.useMemo`
   const allItems = getItems(inputValue)

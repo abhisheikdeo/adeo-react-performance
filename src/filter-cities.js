@@ -13,9 +13,10 @@ export function getItems(filter) {
     return allItems
   }
   return matchSorter(allItems, filter, {
-    keys: ['name'],
+    keys: [ 'name' ],
   })
 }
 
 // This is to avoid some issues https://github.com/kentcdodds/react-performance/issues/115
-export default class makeFilterCitiesWorker {}
+export default class makeFilterCitiesWorker {
+}

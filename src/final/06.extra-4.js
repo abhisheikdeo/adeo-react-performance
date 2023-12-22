@@ -41,10 +41,10 @@ function appReducer(state, action) {
 }
 
 function AppProvider({children}) {
-  const [state, dispatch] = React.useReducer(appReducer, {
+  const [ state, dispatch ] = React.useReducer(appReducer, {
     dogName: '',
   })
-  const value = [state, dispatch]
+  const value = [ state, dispatch ]
   return (
     <AppStateContext.Provider value={value}>
       {children}
@@ -62,8 +62,8 @@ function useAppState() {
 
 function Grid() {
   const updateGrid = useUpdateGrid()
-  const [rows, setRows] = useDebouncedState(50)
-  const [columns, setColumns] = useDebouncedState(50)
+  const [ rows, setRows ] = useDebouncedState(50)
+  const [ columns, setColumns ] = useDebouncedState(50)
   const updateGridData = () => updateGrid({rows, columns})
   return (
     <AppGrid
@@ -78,7 +78,7 @@ function Grid() {
 }
 
 function Cell({row, column}) {
-  const [cell, setCell] = useRecoilState(cellAtoms({row, column}))
+  const [ cell, setCell ] = useRecoilState(cellAtoms({row, column}))
   const handleClick = () => setCell(Math.random() * 100)
   return (
     <button
@@ -95,7 +95,7 @@ function Cell({row, column}) {
 }
 
 function DogNameInput() {
-  const [state, dispatch] = useAppState()
+  const [ state, dispatch ] = useAppState()
   const {dogName} = state
 
   function handleChange(event) {

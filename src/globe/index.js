@@ -14,11 +14,11 @@ const Globe = animated(
     const svgref = React.useRef()
     const projection = React.useMemo(() => {
       return geoOrthographic()
-        .translate([size / 2, size / 2])
+        .translate([ size / 2, size / 2 ])
         .scale((size / 2) * zoom)
         .clipAngle(90)
-        .rotate([-lat, -lng])
-    }, [size, lat, lng, zoom])
+        .rotate([ -lat, -lng ])
+    }, [ size, lat, lng, zoom ])
 
     const pathgen = geoPath(projection)
     const currentCoordinates = [
@@ -29,7 +29,7 @@ const Globe = animated(
     // Check if it's behind the globe
     const isPinVisible = pathgen({
       type: 'Point',
-      coordinates: [currentCoordinates[0], currentCoordinates[1]],
+      coordinates: [ currentCoordinates[0], currentCoordinates[1] ],
     })
 
     return (
@@ -57,7 +57,7 @@ const Globe = animated(
           r={(size / 2) * zoom}
           onClick={e => {
             let rect = svgref.current.getBoundingClientRect()
-            const [lat, lng] = projection.invert([
+            const [ lat, lng ] = projection.invert([
               e.pageX - rect.left,
               e.pageY - rect.top,
             ])
@@ -77,7 +77,7 @@ const Globe = animated(
         </g>
         {currentLocation.userLat &&
           !isEmpty(isPinVisible) &&
-          [0, 1].map(pin => (
+          [ 0, 1 ].map(pin => (
             <circle
               key={pin}
               className={`pin-${pin}`}
@@ -93,7 +93,7 @@ const Globe = animated(
 )
 
 function GlobeContainer({size = 400}) {
-  const [state, setState] = React.useState({
+  const [ state, setState ] = React.useState({
     lat: 0,
     lng: 0,
     userLat: 0,
@@ -109,7 +109,7 @@ function GlobeContainer({size = 400}) {
         lng: position.coords.latitude,
       }),
     )
-  }, [setState])
+  }, [ setState ])
 
   // Panning
   const {lat, lng} = useSpring({
@@ -118,7 +118,7 @@ function GlobeContainer({size = 400}) {
   })
 
   // Zooming (use cmd/ctrl + scroll to zoom)
-  const [zoom, setZoom] = React.useState({
+  const [ zoom, setZoom ] = React.useState({
     wheeling: false,
     scale: 1,
   })
@@ -126,7 +126,7 @@ function GlobeContainer({size = 400}) {
   const canvasRef = React.useRef()
 
   const bind = useWheel(
-    ({wheeling, metaKey, delta: [deltaX, deltaY], event}) => {
+    ({wheeling, metaKey, delta: [ deltaX, deltaY ], event}) => {
       if (metaKey && event) {
         const newScale = clamp(zoom.scale + deltaY / 600, 0.2, 10)
 

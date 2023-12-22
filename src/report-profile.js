@@ -34,7 +34,7 @@ function sendProfileQueue() {
   if (!queue.length) {
     return Promise.resolve()
   }
-  const queueToSend = [...queue]
+  const queueToSend = [ ...queue ]
   queue = []
   console.info('sending profile queue', queueToSend)
   // here's where we'd actually make the server call to send the queueToSend

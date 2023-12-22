@@ -9,7 +9,7 @@ function useSafeDispatch(dispatch) {
   }, [])
   return React.useCallback(
     (...args) => (mounted.current ? dispatch(...args) : void 0),
-    [dispatch],
+    [ dispatch ],
   )
 }
 
@@ -19,12 +19,13 @@ function useSafeDispatch(dispatch) {
 //   run(fetchPokemon(pokemonName))
 // }, [pokemonName, run])
 const defaultInitialState = {status: 'idle', data: null, error: null}
+
 function useAsync(initialState) {
   const initialStateRef = React.useRef({
     ...defaultInitialState,
     ...initialState,
   })
-  const [{status, data, error}, setState] = React.useReducer(
+  const [ {status, data, error}, setState ] = React.useReducer(
     (s, a) => ({...s, ...a}),
     initialStateRef.current,
   )
@@ -50,7 +51,7 @@ function useAsync(initialState) {
         },
       )
     },
-    [safeSetState],
+    [ safeSetState ],
   )
 
   const setData = React.useCallback(data => safeSetState({data}), [
@@ -93,10 +94,10 @@ function debounce(cb, time) {
 // this only needs to exist because concurrent mode isn't here yet. When we get
 // that then so much of our hack-perf fixes go away!
 function useDebouncedState(initialState) {
-  const [state, setState] = React.useState(initialState)
+  const [ state, setState ] = React.useState(initialState)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSetState = React.useCallback(debounce(setState, 200), [])
-  return [state, debouncedSetState]
+  return [ state, debouncedSetState ]
 }
 
 function Interval({onInterval, interval}) {
@@ -105,14 +106,14 @@ function Interval({onInterval, interval}) {
 }
 
 function AppGrid({
-  onUpdateGrid,
-  rows,
-  handleRowsChange,
-  columns,
-  handleColumnsChange,
-  Cell,
-}) {
-  const [keepUpdated, setKeepUpdated] = React.useState(false)
+                   onUpdateGrid,
+                   rows,
+                   handleRowsChange,
+                   columns,
+                   handleColumnsChange,
+                   Cell,
+                 }) {
+  const [ keepUpdated, setKeepUpdated ] = React.useState(false)
   return (
     <div>
       <form onSubmit={e => e.preventDefault()}>

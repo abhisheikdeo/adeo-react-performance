@@ -61,13 +61,13 @@ function appReducer(state, action) {
 }
 
 function AppProvider({children}) {
-  const [state, dispatch] = React.useReducer(appReducer, {
+  const [ state, dispatch ] = React.useReducer(appReducer, {
     dogName: '',
     // 💣 we're moving our state outside of React with our atom, delete this:
     grid: initialGrid,
   })
   // 🦉 notice that we don't even need to bother memoizing this value
-  const value = [state, dispatch]
+  const value = [ state, dispatch ]
   return (
     <AppStateContext.Provider value={value}>
       {children}
@@ -86,9 +86,9 @@ function useAppState() {
 function Grid() {
   // 🐨 we're no longer storing the grid in our app state, so instead you
   // want to get the updateGrid function from useUpdateGrid
-  const [, dispatch] = useAppState()
-  const [rows, setRows] = useDebouncedState(50)
-  const [columns, setColumns] = useDebouncedState(50)
+  const [ , dispatch ] = useAppState()
+  const [ rows, setRows ] = useDebouncedState(50)
+  const [ columns, setColumns ] = useDebouncedState(50)
   const updateGridData = () => dispatch({type: 'UPDATE_GRID'})
   return (
     <AppGrid
@@ -101,6 +101,7 @@ function Grid() {
     />
   )
 }
+
 // 💣 remove memoization. It's not needed!
 Grid = React.memo(Grid)
 
@@ -108,7 +109,7 @@ function Cell({row, column}) {
   // 🐨 replace these three lines with useRecoilState for the cellAtoms
   // 💰 Here's how you calculate the new value for the cell when it's clicked:
   //    Math.random() * 100
-  const [state, dispatch] = useAppState()
+  const [ state, dispatch ] = useAppState()
   const cell = state.grid[row][column]
   const handleClick = () => dispatch({type: 'UPDATE_GRID_CELL', row, column})
 
@@ -125,12 +126,13 @@ function Cell({row, column}) {
     </button>
   )
 }
+
 // 🦉 notice we don't need to bother memoizing any of the components!!
 // 💣 remove memoization
 Cell = React.memo(Cell)
 
 function DogNameInput() {
-  const [state, dispatch] = useAppState()
+  const [ state, dispatch ] = useAppState()
   const {dogName} = state
 
   function handleChange(event) {
@@ -155,6 +157,7 @@ function DogNameInput() {
     </form>
   )
 }
+
 function App() {
   const forceRerender = useForceRerender()
   return (

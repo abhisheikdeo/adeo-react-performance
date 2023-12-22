@@ -6,7 +6,7 @@ import '../final/03'
 
 // this gets set as soon as we import the file
 // storing it here so it persists between tests
-const memoCalls = [...React.memo.mock.calls]
+const memoCalls = [ ...React.memo.mock.calls ]
 
 jest.mock('../workerized-filter-cities', () => ({
   getItems: jest.fn(() => {

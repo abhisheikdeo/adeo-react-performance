@@ -17,15 +17,15 @@ const getVirtualRowStyles = ({size, start}) => ({
 })
 
 function Menu({
-  items,
-  getMenuProps,
-  getItemProps,
-  highlightedIndex,
-  selectedItem,
-  listRef,
-  virtualRows,
-  totalHeight,
-}) {
+                items,
+                getMenuProps,
+                getItemProps,
+                highlightedIndex,
+                selectedItem,
+                listRef,
+                virtualRows,
+                totalHeight,
+              }) {
   return (
     <ul {...getMenuProps({ref: listRef})}>
       <li style={{height: totalHeight}} />
@@ -51,14 +51,14 @@ function Menu({
 }
 
 function ListItem({
-  getItemProps,
-  item,
-  index,
-  isHighlighted,
-  isSelected,
-  style,
-  ...props
-}) {
+                    getItemProps,
+                    item,
+                    index,
+                    isHighlighted,
+                    isSelected,
+                    style,
+                    ...props
+                  }) {
   return (
     <li
       {...getItemProps({
@@ -77,12 +77,12 @@ function ListItem({
 
 function App() {
   const forceRerender = useForceRerender()
-  const [inputValue, setInputValue] = React.useState('')
+  const [ inputValue, setInputValue ] = React.useState('')
 
   const {data: items, run} = useAsync({data: [], status: 'pending'})
   React.useEffect(() => {
     run(getItems(inputValue))
-  }, [inputValue, run])
+  }, [ inputValue, run ])
 
   const listRef = React.useRef()
 
@@ -113,7 +113,8 @@ function App() {
           : 'Selection Cleared',
       ),
     itemToString: item => (item ? item.name : ''),
-    scrollIntoView: () => {},
+    scrollIntoView: () => {
+    },
     onHighlightedIndexChange: ({highlightedIndex}) =>
       highlightedIndex !== -1 && rowVirtualizer.scrollToIndex(highlightedIndex),
   })

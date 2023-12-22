@@ -8,12 +8,12 @@ import {getItems} from '../workerized-filter-cities'
 import {useAsync, useForceRerender} from '../utils'
 
 function Menu({
-  items,
-  getMenuProps,
-  getItemProps,
-  highlightedIndex,
-  selectedItem,
-}) {
+                items,
+                getMenuProps,
+                getItemProps,
+                highlightedIndex,
+                selectedItem,
+              }) {
   return (
     <ul {...getMenuProps()}>
       {items.map((item, index) => (
@@ -31,16 +31,17 @@ function Menu({
     </ul>
   )
 }
+
 Menu = React.memo(Menu)
 
 function ListItem({
-  getItemProps,
-  item,
-  index,
-  isHighlighted,
-  isSelected,
-  ...props
-}) {
+                    getItemProps,
+                    item,
+                    index,
+                    isHighlighted,
+                    isSelected,
+                    ...props
+                  }) {
   return (
     <li
       {...getItemProps({
@@ -55,16 +56,17 @@ function ListItem({
     />
   )
 }
+
 ListItem = React.memo(ListItem)
 
 function App() {
   const forceRerender = useForceRerender()
-  const [inputValue, setInputValue] = React.useState('')
+  const [ inputValue, setInputValue ] = React.useState('')
 
   const {data: allItems, run} = useAsync({data: [], status: 'pending'})
   React.useEffect(() => {
     run(getItems(inputValue))
-  }, [inputValue, run])
+  }, [ inputValue, run ])
   const items = allItems.slice(0, 100)
 
   const {

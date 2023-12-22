@@ -7,7 +7,7 @@ import * as React from 'react'
 const Globe = React.lazy(() => import(/* webpackPrefetch: true */ '../globe'))
 
 function App() {
-  const [showGlobe, setShowGlobe] = React.useState(false)
+  const [ showGlobe, setShowGlobe ] = React.useState(false)
 
   return (
     <div

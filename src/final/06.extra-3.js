@@ -34,7 +34,7 @@ function appReducer(state, action) {
 }
 
 function AppProvider({children}) {
-  const [state, dispatch] = React.useReducer(appReducer, {
+  const [ state, dispatch ] = React.useReducer(appReducer, {
     grid: initialGrid,
   })
   return (
@@ -74,8 +74,8 @@ function dogReducer(state, action) {
 }
 
 function DogProvider(props) {
-  const [state, dispatch] = React.useReducer(dogReducer, {dogName: ''})
-  const value = [state, dispatch]
+  const [ state, dispatch ] = React.useReducer(dogReducer, {dogName: ''})
+  const value = [ state, dispatch ]
   return <DogContext.Provider value={value} {...props} />
 }
 
@@ -89,8 +89,8 @@ function useDogState() {
 
 function Grid() {
   const dispatch = useAppDispatch()
-  const [rows, setRows] = useDebouncedState(50)
-  const [columns, setColumns] = useDebouncedState(50)
+  const [ rows, setRows ] = useDebouncedState(50)
+  const [ columns, setColumns ] = useDebouncedState(50)
   const updateGridData = () => dispatch({type: 'UPDATE_GRID'})
   return (
     <AppGrid
@@ -103,14 +103,17 @@ function Grid() {
     />
   )
 }
+
 Grid = React.memo(Grid)
 
 function withStateSlice(Comp, slice) {
   const MemoComp = React.memo(Comp)
+
   function Wrapper(props, ref) {
     const state = useAppState()
     return <MemoComp ref={ref} state={slice(state, props)} {...props} />
   }
+
   Wrapper.displayName = `withStateSlice(${Comp.displayName || Comp.name})`
   return React.memo(React.forwardRef(Wrapper))
 }
@@ -131,10 +134,11 @@ function Cell({state: cell, row, column}) {
     </button>
   )
 }
+
 Cell = withStateSlice(Cell, (state, {row, column}) => state.grid[row][column])
 
 function DogNameInput() {
-  const [state, dispatch] = useDogState()
+  const [ state, dispatch ] = useDogState()
   const {dogName} = state
 
   function handleChange(event) {

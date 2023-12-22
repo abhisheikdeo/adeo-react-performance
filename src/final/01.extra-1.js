@@ -8,7 +8,7 @@ const loadGlobe = () => import('../globe')
 const Globe = React.lazy(loadGlobe)
 
 function App() {
-  const [showGlobe, setShowGlobe] = React.useState(false)
+  const [ showGlobe, setShowGlobe ] = React.useState(false)
 
   return (
     <div

@@ -19,13 +19,13 @@ const getVirtualRowStyles = ({size, start}) => ({
 })
 
 function Menu({
-  items,
-  getMenuProps,
-  getItemProps,
-  highlightedIndex,
-  selectedItem,
-  // 🐨 accept listRef, virtualRows, totalHeight
-}) {
+                items,
+                getMenuProps,
+                getItemProps,
+                highlightedIndex,
+                selectedItem,
+                // 🐨 accept listRef, virtualRows, totalHeight
+              }) {
   return (
     // 🐨 pass the listRef to the `getMenuProps` prop getter function below:
     // 💰  getMenuProps({ref: listRef})
@@ -63,14 +63,14 @@ function Menu({
 }
 
 function ListItem({
-  getItemProps,
-  item,
-  index,
-  isHighlighted,
-  isSelected,
-  // 🐨 accept the style prop
-  ...props
-}) {
+                    getItemProps,
+                    item,
+                    index,
+                    isHighlighted,
+                    isSelected,
+                    // 🐨 accept the style prop
+                    ...props
+                  }) {
   return (
     <li
       {...getItemProps({
@@ -89,12 +89,12 @@ function ListItem({
 
 function App() {
   const forceRerender = useForceRerender()
-  const [inputValue, setInputValue] = React.useState('')
+  const [ inputValue, setInputValue ] = React.useState('')
 
   const {data: items, run} = useAsync({data: [], status: 'pending'})
   React.useEffect(() => {
     run(getItems(inputValue))
-  }, [inputValue, run])
+  }, [ inputValue, run ])
 
   // 🐨 create a listRef with React.useRef
   // which will be used for the parentRef option you pass to useVirtual

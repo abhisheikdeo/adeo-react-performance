@@ -15,8 +15,8 @@ function NameInput({name, onNameChange}) {
 }
 
 function Example() {
-  const [name, setName] = React.useState('')
-  const [count, setCount] = React.useState(0)
+  const [ name, setName ] = React.useState('')
+  const [ count, setCount ] = React.useState(0)
   const increment = () => setCount(c => c + 1)
   return (
     <div>
